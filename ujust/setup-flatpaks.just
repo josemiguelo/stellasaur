@@ -2,7 +2,6 @@
 [group('PostInstall')]
 setup-flatpaks:
   #!/bin/bash
-
   set -ex
 
   remove_flatpak() {

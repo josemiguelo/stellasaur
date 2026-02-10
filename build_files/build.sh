@@ -43,38 +43,9 @@ DEV_PACKAGES=(
   "gdbm-devel"
   "ncurses-devel"
   "perl-FindBin"
-  "git-delta"
-  "tmux"
 )
 echo "Installing dev packages ${#DEV_PACKAGES[@]} ..."
 dnf5 install -y "${DEV_PACKAGES[@]}"
-echo "::endgroup::"
-
-###############
-## CLI TOOLS ##
-###############
-echo "::group:: Install CLI tools"
-CLI_PACKAGES=(
-  "atuin"
-  "btop"
-  "bat"
-  "chezmoi"
-  "ripgrep"
-  "zoxide"
-  "fd-find"
-  "trash-cli"
-  "tree-sitter-cli"
-)
-echo "Installing cli packages ${#CLI_PACKAGES[@]} ..."
-dnf5 install -y "${CLI_PACKAGES[@]}"
-echo "::endgroup::"
-
-##########
-## YAZI ##
-##########
-echo "::group:: Install yazi"
-dnf5 copr enable -y lihaohong/yazi
-dnf5 install -y yazi
 echo "::endgroup::"
 
 #############
