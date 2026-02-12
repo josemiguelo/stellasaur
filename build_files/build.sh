@@ -113,7 +113,8 @@ echo "::endgroup::"
 ## 1PASSWORD ##
 ###############
 echo "::group:: Install 1password"
-rpm --import https://downloads.1password.com/linux/keys/1password.asc
+curl -fsSL https://downloads.1password.com/linux/keys/1password.asc -o /tmp/1password.asc
+rpm --import /tmp/1password.asc --import https://downloads.1password.com/linux/keys/1password.asc
 dnf5 config-manager addrepo \
   --id=1password \
   --set=name="1Password Stable Channel" \
@@ -121,7 +122,12 @@ dnf5 config-manager addrepo \
   --set=enabled=1 \
   --set=gpgcheck=1 \
   --set=repo_gpgcheck=1 \
-  --set=gpgkey="https://downloads.1password.com/linux/keys/1password.asc"
+  --set=gpgkey="file:///tmp/1password.asc"
+
+mkdir -p /var/opt/1Password
+ln -sf /var/opt/1Password /opt/1Password
+
+dnf5 makecache --repo=1password
 dnf5 install -y 1password
 echo "::endgroup::"
 
