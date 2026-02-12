@@ -77,7 +77,7 @@ baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/an
 enabled=1
 gpgcheck=0
 EOF
-dnf5 makecache
+dnf5 makecache --repo=antigravity-rpm
 dnf5 install -y antigravity
 echo "::endgroup::"
 
@@ -124,9 +124,6 @@ dnf5 config-manager addrepo \
   --set=repo_gpgcheck=1 \
   --set=gpgkey="file:///tmp/1password.asc"
 
-mkdir -p /var/opt/1Password
-ln -sf /var/opt/1Password /opt/1Password
-
 dnf5 makecache --repo=1password
 dnf5 install -y 1password
 echo "::endgroup::"
@@ -157,7 +154,7 @@ sslverify=1
 sslcacert=/etc/pki/tls/certs/ca-bundle.crt
 metadata_expire=300
 EOF
-dnf5 -y --refresh makecache
+dnf5 makecache --repo=slack
 dnf5 -y install slack
 echo "::endgroup::"
 
@@ -177,7 +174,7 @@ echo "::endgroup::"
 echo "::group:: Install sublime-text"
 rpm -v --import https://download.sublimetext.com/sublimehq-rpm-pub.gpg
 dnf5 config-manager addrepo --from-repofile=https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-dnf5 makecache
+dnf5 makecache --repo=sublime-text
 dnf5 install -y sublime-text
 echo "::endgroup::"
 
