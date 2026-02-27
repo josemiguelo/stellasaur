@@ -200,3 +200,5 @@ systemctl enable podman.socket
 
 dnf5 clean all
 echo "🚀 Installation complete!"
+
+systemctl enable post-install-checker.service
