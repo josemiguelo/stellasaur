@@ -178,6 +178,13 @@ dnf5 makecache --repo=sublime-text
 dnf5 install -y sublime-text
 echo "::endgroup::"
 
+##########
+## NIRI ##
+##########
+echo "::group:: Install niri"
+dnf5 install -y niri
+echo "::endgroup::"
+
 ###############
 ## RPMFUSION ##
 ###############
