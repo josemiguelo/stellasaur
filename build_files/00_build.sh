@@ -15,10 +15,12 @@ set -ouex pipefail
 /ctx/110_teams.sh
 /ctx/120_sublime.sh
 /ctx/130_rpm-fusion.sh
+/ctx/140_set-ddcutil-up.sh
 
 echo "::group:: === enabling services ==="
 systemctl enable podman.socket
-systemctl enable post-install-checker.service
+systemctl enable /usr/lib/systemd/user/post-install-checker.service
+systemctl enable /usr/lib/systemd/user/custom-groups.service
 echo "::endgroup::"
 
 dnf5 clean all
