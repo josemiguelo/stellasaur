@@ -31,11 +31,7 @@ else
 fi
 
 echo "Ensuring 'i2c' group exists..."
-if ! getent group i2c >/dev/null; then
-  groupadd i2c
-  echo "Created 'i2c' group."
-else
-  echo "'i2c' group already exists."
-fi
+groupadd -f i2c
+echo "Created 'i2c' group."
 
 echo "::endgroup::"

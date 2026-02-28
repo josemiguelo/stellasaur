@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Logic from bluefin-dx-groups for state tracking
-STATE_FILE="/etc/stellasaur/custom-groups-v1"
+STATE_FILE="/etc/stellasaur/custom-groups-v2"
 if [[ -f $STATE_FILE ]]; then
   echo "Group setup has already run. Exiting..."
   exit 0
@@ -12,7 +12,13 @@ fi
 # Group definitions to ensure they exist in /etc/group
 append_group() {
   if ! grep -q "^$1:" /etc/group; then
-    grep "^$1:" /usr/lib/group >>/etc/group
+    if grep -q "^$1:" /usr/lib/group; then
+      grep "^$1:" /usr/lib/group >>/etc/group
+      echo "Appended group $1 from /usr/lib/group to /etc/group"
+    else
+      groupadd -f "$1"
+      echo "Created group $1 via groupadd"
+    fi
   else
     echo "Group $1 already exists in /etc/group"
   fi
