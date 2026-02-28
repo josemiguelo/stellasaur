@@ -20,7 +20,7 @@ set -ouex pipefail
 
 echo "::group:: === enabling services ==="
 systemctl enable podman.socket
-systemctl enable /usr/lib/systemd/user/post-install-checker.service
+systemctl enable --global /usr/lib/systemd/user/post-install-checker.service
 systemctl enable /usr/lib/systemd/user/custom-groups.service
 echo "::endgroup::"
 
