@@ -16,6 +16,7 @@ set -ouex pipefail
 /ctx/120_sublime.sh
 /ctx/130_rpm-fusion.sh
 /ctx/140_set-ddcutil-up.sh
+/ctx/141_install-gnome-extensions.sh
 
 echo "::group:: === enabling services ==="
 systemctl enable podman.socket
