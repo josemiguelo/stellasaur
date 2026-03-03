@@ -1,8 +1,8 @@
 FROM busybox AS ctx
 
 # main path scripts
-COPY build_files /
-RUN chmod +x /*.sh
+COPY build_files /build_scripts
+RUN chmod +x /build_scripts/*.sh
 
 FROM ghcr.io/ublue-os/bluefin-dx-nvidia-open:stable
 
@@ -26,7 +26,7 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
-    /ctx/00_build.sh
+    /ctx/build_scripts/00_build.sh
 
 ## Verify if final image and contents are correct.
 RUN bootc container lint
