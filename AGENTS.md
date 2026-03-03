@@ -48,7 +48,7 @@ TOML files in `disk_config/` configure bootc-image-builder for different output 
 - Scripts are numbered with zero-padded prefixes in increments of 10 (e.g., `10_`, `20_`, `30_`). Use a gap or a sub-number (e.g., `141_`) if inserting between existing scripts.
 - Each script should handle exactly one concern (one application, one repo, one config).
 - To disable a script without removing it, add `exit 0` at the top of the script body.
-- New scripts must be added to `00_build.sh` to be executed during the build.
+- New scripts are automatically discovered and executed by `00_build.sh` — do not add them manually to the orchestrator.
 
 ### Just recipes
 
@@ -78,3 +78,7 @@ Run `just --list` to see all available recipes. Key workflows:
 - `just check` — Validate just file syntax.
 
 To test changes: modify a build script or the Containerfile, run `just build`, and verify the build succeeds (including the `bootc container lint` step). For ujust recipe changes, test by running the specific recipe directly (e.g., `ujust <recipe-name>`).
+
+## Self-maintenance
+
+After every change, evaluate whether any AI instruction files (`AGENTS.md`, `llms.txt`, and any `README.md` files in the repo) need to be updated to reflect the new state of the project. If a change introduces, removes, or modifies conventions, architecture, file structure, or workflows, update the relevant files so they stay accurate. Do not wait to be asked.
