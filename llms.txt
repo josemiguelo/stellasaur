@@ -2,7 +2,7 @@
 
 > A custom bootc image that integrates my personal tooling into Bluefin DX (Universal Blue)
 
-stellasaur builds a personalized Fedora-based Linux desktop image using bootc and containers. It adds packages, desktop applications, GNOME extensions, and systemd services on top of a Universal Blue base image. After installation, ujust recipes handle post-install user setup.
+stellasaur builds personalized Fedora-based Linux desktop images using bootc and containers. It adds packages, desktop applications, GNOME extensions, and systemd services on top of a Universal Blue base image. Two variants are produced: a standard `bluefin-dx` image and an Nvidia variant (`bluefin-dx-nvidia-open`). After installation, ujust recipes handle post-install user setup.
 
 ## Key concepts
 

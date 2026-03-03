@@ -10,7 +10,7 @@ stellasaur is a custom bootc container image extending a Universal Blue Bluefin 
 
 ### Build pipeline
 
-The `Containerfile` defines a multi-stage build. The first stage copies build scripts into a scratch context. The second stage starts from the base image, copies system files (scripts, services, ujust recipes, GNOME extensions) into the filesystem, then runs the orchestrator script `build_files/00_build.sh`. That orchestrator invokes every other numbered script in `build_files/` in order. The build finishes with `bootc container lint` to validate the image. Read the `Containerfile` and `build_files/00_build.sh` to understand the current build steps.
+The `Containerfile` defines a multi-stage build parameterized by `BASE_IMAGE` (defaults to `bluefin-dx`). The first stage copies build scripts into a scratch context. The second stage starts from `ghcr.io/ublue-os/${BASE_IMAGE}:stable`, copies system files (scripts, services, ujust recipes, GNOME extensions) into the filesystem, then runs the orchestrator script `build_files/00_build.sh`. That orchestrator auto-discovers and invokes every other numbered script in `build_files/` in version-sorted order. The build finishes with `bootc container lint` to validate the image. CI uses a matrix strategy to build two variants: `bluefin-dx` (published as `stellasaur`) and `bluefin-dx-nvidia-open` (published as `stellasaur-nvidia`). Read the `Containerfile` and `build_files/00_build.sh` to understand the current build steps.
 
 ### Post-install flow
 
@@ -72,7 +72,7 @@ TOML files in `disk_config/` configure bootc-image-builder for different output 
 
 Run `just --list` to see all available recipes. Key workflows:
 
-- `just build` — Build the container image locally with Podman.
+- `just build` — Build the container image locally with Podman (defaults to `bluefin-dx`; pass `base_image=bluefin-dx-nvidia-open` for the Nvidia variant).
 - `just lint` — Run shellcheck on all shell scripts.
 - `just format` — Run shfmt on all shell scripts.
 - `just check` — Validate just file syntax.

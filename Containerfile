@@ -4,7 +4,8 @@ FROM busybox AS ctx
 COPY build_files /build_scripts
 RUN chmod +x /build_scripts/*.sh
 
-FROM ghcr.io/ublue-os/bluefin-dx-nvidia-open:stable
+ARG BASE_IMAGE=bluefin-dx
+FROM ghcr.io/ublue-os/${BASE_IMAGE}:stable
 
 ## Make /opt immutable and be able to be used by the package manager.
 RUN rm /opt && mkdir /opt
