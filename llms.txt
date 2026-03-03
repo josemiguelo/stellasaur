@@ -1,0 +1,25 @@
+# stellasaur
+
+> A custom bootc image that integrates my personal tooling into Bluefin DX (Universal Blue)
+
+stellasaur builds a personalized Fedora-based Linux desktop image using bootc and containers. It adds packages, desktop applications, GNOME extensions, and systemd services on top of a Universal Blue base image. After installation, ujust recipes handle post-install user setup.
+
+## Key concepts
+
+- **bootc**: Boot containers — the OS is a container image that can be switched/updated atomically via `sudo bootc switch`.
+- **Universal Blue / Bluefin**: Community Fedora-based images. stellasaur extends the Bluefin developer edition with Nvidia drivers.
+- **Build scripts**: Numbered shell scripts in `build_files/` run during `podman build` to install packages and configure the system. See `build_files/README.md`.
+- **ujust recipes**: Post-install automation run by the user via `ujust do-post-install`. See `ujust/README.md`.
+- **Post-install checker**: A systemd user service that clones this repo on first graphical login so ujust recipes are available. 
+
+## Repository layout
+
+- `Containerfile`: Defines the container image build — base image, file copies, and build invocation.
+- `Justfile`: Local development recipes — build images, create VMs, lint, format. Run `just --list` to see available commands.
+- `build_files/`: Numbered shell scripts that install packages and configure the system at build time. See `build_files/README.md`.
+- `ujust/`: Post-install just recipes for user-level setup. See `ujust/README.md`.
+- `system_files/`: Scripts and files copied into the image filesystem, mirroring target paths. See `system_files/README.md`.
+- `services/`: Systemd service units baked into the image. See `services/README.md`.
+- `disk_config/`: TOML configs for bootc-image-builder (disk layout, kickstart for ISOs). See `disk_config/README.md`.
+- `.github/workflows/`: CI pipelines for building and publishing the image.
+- `AGENTS.md`: Coding conventions, architecture, and rules for AI agents working in this repo.
