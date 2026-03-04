@@ -17,6 +17,7 @@ setup-brews:
   brew install trash-cli
   brew install tree-sitter-cli
   brew install tmux
+  brew install tmuxpack/tpack/tpack
   brew install git-delta
   brew install lazygit
 
