@@ -34,3 +34,10 @@ ujust do-post-install
 ## Why the name stellasaur?
 
 Bluefin has a [dinosaur naming tradition](https://docs.projectbluefin.io/dinosaurs) for its custom images. This project originally used the [Cosmic desktop environment](https://system76.com/cosmic/), and the name *stellasaur* comes from that — a nod to *stellar* (as in cosmic/space) combined with the requisite dinosaur suffix.
+
+## Todos
+
+- install postman
+- install scrcpy
+- install dbeaver
+- install azure-cli

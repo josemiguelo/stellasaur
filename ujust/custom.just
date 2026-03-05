@@ -7,6 +7,7 @@ import "./download-dotfiles.just"
 import "./download-fonts.just"
 import "./setup-asdf.just"
 import "./setup-ngrok.just"
+import "./setup-completions.just"
 
 [group('PostInstall')]
 do-post-install: \
@@ -18,4 +19,5 @@ do-post-install: \
   download-dotfiles \
   download-fonts \
   setup-asdf \
-  setup-ngrok
+  setup-ngrok \
+  setup-completions
