@@ -20,6 +20,7 @@ setup-brews:
   brew install tmuxpack/tpack/tpack
   brew install git-delta
   brew install lazygit
+  brew install lazydocker
 
   brew cleanup
 
